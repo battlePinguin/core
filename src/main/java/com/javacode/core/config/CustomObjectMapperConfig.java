@@ -1,6 +1,8 @@
 package com.javacode.core.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -18,7 +20,12 @@ public class CustomObjectMapperConfig {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy:MM:dd#HH:mm:ss:SSS", Locale.ENGLISH);
         dateFormat.setTimeZone(TimeZone.getTimeZone("Europe/Moscow"));
 
-        objectMapper.setDateFormat(dateFormat);
+        JavaTimeModule javaTimeModule = new JavaTimeModule();
+        objectMapper.registerModule(javaTimeModule);
+
+        // Отключить использование timestamp для объектов java.time
+        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+
         return objectMapper;
     }
 }
