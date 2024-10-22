@@ -3,6 +3,7 @@ package com.javacode.core.controller;
 import com.javacode.core.entity.Employee;
 import com.javacode.core.service.EmployeeService;
 import com.javacode.core.utils.EmployeeProjection;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,8 +30,9 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public Employee createEmployee(@RequestBody Employee employee) {
-        return employeeService.saveEmployee(employee);
+    public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee) {
+        Employee savedEmployee =  employeeService.saveEmployee(employee);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedEmployee);
     }
 
     @GetMapping("/{id}")

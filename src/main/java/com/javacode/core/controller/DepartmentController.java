@@ -2,6 +2,7 @@ package com.javacode.core.controller;
 
 import com.javacode.core.entity.Department;
 import com.javacode.core.service.DepartmentService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,8 +25,9 @@ public class DepartmentController {
     }
 
     @PostMapping
-    public Department createDepartment(@RequestBody Department department) {
-        return departmentService.saveDepartment(department);
+    public ResponseEntity<Department> createDepartment(@RequestBody Department department) {
+        Department createdDepartment = departmentService.saveDepartment(department);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdDepartment);
     }
 
     @GetMapping("/{id}")
