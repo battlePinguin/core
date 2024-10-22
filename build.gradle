@@ -24,15 +24,18 @@ repositories {
 }
 
 dependencies {
-//    implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.0'
-//    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.18.0'
-//    runtimeOnly 'com.fasterxml.jackson.module:jackson-modules-java8:2.18.0'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'com.h2database:h2:2.2.224'
 
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    implementation 'org.springframework.boot:spring-boot-devtools:3.3.4'
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
 }
 
 tasks.named('test') {
