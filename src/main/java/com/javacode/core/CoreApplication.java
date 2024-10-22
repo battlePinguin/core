@@ -3,7 +3,7 @@ package com.javacode.core;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.javacode.core", "repository"})
 public class CoreApplication {
 
     public static void main(String[] args) {
